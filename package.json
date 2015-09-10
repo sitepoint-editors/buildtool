@@ -1,0 +1,27 @@
+{
+  "name": "buildtool",
+  "version": "1.0.0",
+  "description": "npm as a build tool",
+  "dependencies": {},
+  "devDependencies": {
+    "clean-css": "^3.4.1",
+    "http-server": "^0.8.0",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.2",
+    "uglify-js": "^2.4.24",
+    "watch": "^0.16.0"
+  },
+  "scripts": {
+    "info": "echo 'npm as a build tool'",
+    "lint": "echo '=> linting' && jshint assets/scripts/*.js",
+    "test": "echo '=> testing' && mocha test/",
+    "minify:js": "echo '=> minify:js' && uglifyjs assets/scripts/main.js -o dist/public/js/main.min.js",
+    "minify:css": "echo '=> minify:css' && cleancss assets/css/main.css -o dist/public/css/main.min.css",
+    "build": "echo '=> building' && npm run test -s && npm run minify:js -s && npm run minify:css -s",
+    "pretest": "npm run lint -s",
+    "watch": "watch 'npm run minify:js && npm run minify:css' assets/scripts/ assets/css/",
+    "server": "http-server dist/public/"
+  },
+  "author": "SitePoint",
+  "license": "ISC"
+}
